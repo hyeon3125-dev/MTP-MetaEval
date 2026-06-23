@@ -1,0 +1,10 @@
+domain,ratio,verdict,construction_flag,baseline_eff,mtp_eff,notes,approach,phenomena,free_params,assumptions,compute_norm,efficiency
+cosmology,0.017,worse,none,0.5,0.0085,"Joint Planck(R,lA)+DESI+RSD fit; phenomena = blocks at chi2/N<=2.",,,,,,
+cosmology,,,,,,,baseline:lcdm,3.0,0.0,5.0,1.0,0.5
+cosmology,,,,,,,mtp:mtp_3p,3.0,3.0,7.0,343.1431,0.0085
+number_theory_RH,2.3077,improves,partial,0.2,0.4615,"baseline t<200.0 (79 zeros), mtp t<50.0 (9 zeros); both non-refuted; entropy 5.51e-18 vs 9.18e-19 J.",,,,,,
+number_theory_RH,,,,,,,baseline:exhaustive_accumulation,1.0,1.0,3.0,1.0,0.2
+number_theory_RH,,,,,,,mtp:non_refutation_stop,1.0,0.0,2.0,0.1667,0.4615
+engineering_control,1.743,improves,partial,0.4,0.6972,"adaptive err [0.07152, 0.02524, 0.14601] iters [20.9, 24.8, 55.8] vs fixed err [0.12653, 0.11088, 0.21067] iters [111.7, 111.7, 111.7]; adaptive Pareto-dominates: True; coverage(adaptive/fixed) tol0.1:2/0, tol0.15:3/2, tol0.2:3/2.",,,,,,
+engineering_control,,,,,,,baseline:fixed_window,2.0,1.0,3.0,1.0,0.4
+engineering_control,,,,,,,mtp:adaptive_precision_floor,3.0,1.0,3.0,0.3029,0.6972
