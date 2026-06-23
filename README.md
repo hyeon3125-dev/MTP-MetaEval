@@ -1,5 +1,8 @@
 # MTP-MetaEval — explanatory-efficiency scorecard
 
+> **arXiv-ready manuscript:** [paper/main.tex](paper/main.tex) (+ figs, refs.bib);
+> submission steps in [paper/ARXIV_SUBMISSION.md](paper/ARXIV_SUBMISSION.md).
+>
 > **Start here:** [REPORT.md](REPORT.md) — the consolidated report (the spine).
 > Then: [PREREGISTRATION.md](PREREGISTRATION.md) (rules fixed before results) ·
 > [worklog.md](worklog.md) (chronology) · [docs/](docs/) (deep dives) ·

@@ -53,6 +53,36 @@ HISTORICAL_GAPS = [
 TOP_TIER_SPREAD_2026 = 55.0    # cited: top tier within ~55 Elo (June 2026)
 TOP_TIER_N = 5
 
+# Real Arena overall/text top-10 (openlm.ai/chatbot-arena, June 2026), exact Elo.
+OVERALL_TOP10 = [
+    ("Claude Fable 5", 1510), ("Claude Opus 4.8 Thinking", 1506),
+    ("GPT-5.5-high", 1506), ("Claude Opus 4.7 Thinking", 1505),
+    ("Gemini-3.1-Pro", 1505), ("Claude Opus 4.8", 1504),
+    ("Gemini-3.5-Flash", 1504), ("Claude Opus 4.7", 1503),
+    ("Claude Opus 4.6 Thinking", 1503), ("Grok-4.20", 1496),
+]
+# Coding category top tier spans ~1310-1566 (same source): a far wider spread on
+# the coding projection than on overall -> projection-dependence, quantified.
+CODING_TOP_TIER_RANGE = (1310.0, 1566.0)
+
+
+def projection_contrast():
+    elos = [e for _, e in OVERALL_TOP10]
+    overall_spread = max(elos) - min(elos)
+    adj = [elos[i] - elos[i + 1] for i in range(len(elos) - 1)]
+    max_adj = max(adj)
+    coding_spread = CODING_TOP_TIER_RANGE[1] - CODING_TOP_TIER_RANGE[0]
+    print("\n  Projection-dependence, QUANTIFIED (real Arena Elo, June 2026):")
+    print(f"    overall/text top-10 spread : {overall_spread:.0f} Elo "
+          f"(max adjacent {max_adj:.0f} Elo -> win {winrate(max_adj):.3f})")
+    print(f"    coding top-tier spread     : {coding_spread:.0f} Elo "
+          f"(top-vs-floor win {winrate(coding_spread):.3f})")
+    print(f"    -> the SAME frontier is indistinguishable on everyday text "
+          f"({overall_spread:.0f} Elo) but")
+    print(f"       {coding_spread/overall_spread:.0f}x more spread on coding "
+          f"({coding_spread:.0f} Elo) — overhead on one axis, earned on another.")
+    return overall_spread, max_adj, coding_spread
+
 # Capability is a VECTOR, not a scalar. The overhead verdict is a projection onto
 # an axis, and the axes are measured very unequally. Fields: (axis, cross-vendor
 # quantitative benchmark?, what the overhead verdict can be). Verifiable
@@ -117,14 +147,17 @@ def main():
     for name, p in FLOOR_WINRATES.items():
         print(f"    {name:<18} P(win)={p:.3f}  ->  dElo >= {elo_for_winrate(p):5.1f}")
 
-    per_gap = TOP_TIER_SPREAD_2026 / (TOP_TIER_N - 1)
-    print(f"\n  Real anchor (LMArena, June 2026): top {TOP_TIER_N} within "
-          f"~{TOP_TIER_SPREAD_2026:.0f} Elo (tightest on record)")
-    print(f"    => adjacent-model gap ~{per_gap:.1f} Elo  ->  blind win-rate "
+    elos = [e for _, e in OVERALL_TOP10]
+    overall_spread = max(elos) - min(elos)
+    per_gap = max(elos[i] - elos[i + 1] for i in range(len(elos) - 1))
+    print(f"\n  Real anchor (openlm.ai/chatbot-arena overall/text, June 2026):")
+    print(f"    top 10 within {overall_spread:.0f} Elo "
+          f"({OVERALL_TOP10[0][0]} {elos[0]:.0f} .. {OVERALL_TOP10[-1][0]} {elos[-1]:.0f})")
+    print(f"    => max adjacent gap {per_gap:.0f} Elo  ->  blind win-rate "
           f"{winrate(per_gap):.3f}")
     floor55 = elo_for_winrate(0.55)
     verdict = "INSIDE the overhead region" if per_gap < floor55 else "outside"
-    print(f"    adjacent gap {per_gap:.1f} < barely-perceptible floor "
+    print(f"    adjacent gap {per_gap:.0f} < barely-perceptible floor "
           f"{floor55:.1f}  ->  {verdict}")
 
     print("\n  Marginal gain per generation (trend; gaps approximate, cited sources):")
@@ -134,10 +167,12 @@ def main():
         print(f"    {name:<38}{g:>7.1f}{winrate(g):>8.3f}{flag:>13}")
 
     print("\n  VERDICT (aggregate / everyday-prompt distribution):")
-    print("    Adjacent frontier models now differ by ~14 Elo (~52% blind preference)")
-    print("    — below the 55% perceptibility floor. On the median user prompt,")
-    print("    recent generations are in the overhead region: more capability is")
-    print("    being bought, but the marginal user-perceptible difference is ~0.")
+    print(f"    Top-10 frontier within {overall_spread:.0f} Elo, adjacent ~{per_gap:.0f} Elo")
+    print(f"    (~{winrate(per_gap):.0%} blind preference) — below the 55% perceptibility")
+    print("    floor. On the median user prompt, recent generations are in the")
+    print("    overhead region: capability is still bought, perceptible gain ~0.")
+
+    projection_contrast()
 
     print("\n  BUT 'overhead' is per-axis, and 'hard' is not a defined metric ----")
     capability_vector_report()

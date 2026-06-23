@@ -191,3 +191,19 @@ Submittable-form pass:
 - REPORT §7.3 related work (SPRT/optimal stopping, AIC/BIC/MDL, Landauer/Bekenstein,
   permutation/selective inference, Arena + scaling laws) — novelty claimed only in
   synthesis + falsification discipline + the LLM projection framing, not new theory.
+
+## 2026-06-23 (cont.) — quantified LLM projections + arXiv manuscript
+
+- item 3 (quantify): real Arena Elo (openlm.ai/chatbot-arena, June 2026) folded
+  into `llm_overhead.py`. Overall/text top-10 within 14 Elo (adjacent ~7 ->
+  ~51% blind preference -> overhead) vs coding top tier ~256 Elo spread (18x
+  wider -> earned). Projection-dependence now quantified, not asserted.
+- item 1+2 (manuscript): `paper/main.tex` — self-contained arXiv-ready paper
+  (abstract, 9 sections, 2 figures, embedded bibliography so it compiles with no
+  bibtex pass). `paper/refs.bib` optional. RH/control labeled demonstrations;
+  related work positions vs SPRT/optimal stopping, AIC/BIC/MDL, Landauer, Arena,
+  scaling laws; novelty scoped to synthesis + protocol + LLM projection framing.
+- `paper/ARXIV_SUBMISSION.md`: honest "no git-push to arXiv" + 10-min Overleaf/
+  direct-upload paths + endorsement note. cs.LG primary, stat.ME/cs.AI cross-list.
+
+Repo is in submittable form; the manual step is a ~10-minute web upload.

@@ -3,4 +3,4 @@ transition,dElo,winrate,floor55,regime
 2024     GPT-4 -> GPT-4o/Claude3.5,50.0,0.571,34.9,earned
 2025-02  successive-leader low,4.0,0.506,34.9,overhead
 2026-06  top-5 cluster (per-gap),13.8,0.520,34.9,overhead
-2026-06 adjacent (top-5 cluster),13.8,0.520,34.9,overhead
+2026-06 adjacent (top-5 cluster),7.0,0.510,34.9,overhead
