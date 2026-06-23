@@ -177,7 +177,22 @@ aggregate Elo is itself **assumed-not-earned** — it assumes one easy-text
 projection captures the whole vector. The honest position is not "scaling is over"
 but "it is decidable only on the one axis we instrument; building vendor-neutral
 multimodal/agentic measurement is the prerequisite to deciding it anywhere else."
-Full treatment, table, and falsifiable predictions: `docs/llm_overhead.md`. This is
+
+And even *that* one axis is mis-named. "Everyday text" was itself a colloquial
+proxy — the same assumed-not-earned trap. The real axis is information-theoretic:
+the **shared context** between sender and receiver, measurable by deictic density
+(falls monotonically casual→formal), lexical diversity, and most faithfully LM
+perplexity (`adapters/info_content.py`). High-shared-context prompts have a narrow
+correct-answer space — *low capability-SNR by construction* — so competent models
+tie there regardless of saturation. The aggregate verdict therefore **conflates
+(a) capability saturation with (b) a prompt mix dominated by low-information
+tasks**, and Arena does not stratify by information content, so it cannot separate
+them. For the saturation question the benchmark is, in this respect, *broken* — an
+uncontrolled mixture. The earned claim needs stratified evaluation (do model gaps
+shrink across generations *within* high-information strata?); until then the
+defensible statement is only "adjacent models tie on the aggregate mixture," which
+is **not** "capability has saturated." Full treatment + falsifiable predictions:
+`docs/llm_overhead.md`. This is
 the framework's most load-bearing application — the same law that judged a
 dark-energy model now both dates the diminishing returns of LLM scaling *and* shows
 the claim is only well-posed on the sliver of capability we actually measure.

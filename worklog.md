@@ -207,3 +207,23 @@ Submittable-form pass:
   direct-upload paths + endorsement note. cs.LG primary, stat.ME/cs.AI cross-list.
 
 Repo is in submittable form; the manual step is a ~10-minute web upload.
+
+## 2026-06-23 (cont.) — 'everyday' is unmeasured too (pre-arXiv fix)
+
+Reviewer objection (correct): the LLM verdict was stated on "everyday text," but
+"everyday" is not a measured quantity -- the same assumed-not-earned trap as
+"hard." `adapters/info_content.py` makes the axis measurable (deictic density
+falls monotonically casual 0.35 -> formal 0.00; gzip is a weak, non-monotone proxy
+since it ignores external shared context; the faithful measure is LM perplexity).
+
+The deeper consequence: high-shared-context prompts have a narrow correct-answer
+space (low capability-SNR by construction), so models tie there regardless of
+saturation. Aggregate Arena indistinguishability therefore CONFLATES (a) capability
+saturation with (b) a low-information prompt mix, and Arena does not stratify by
+information content -> for the saturation question the measurement is an
+uncontrolled mixture (broken in that respect). Fix: stratified evaluation (do gaps
+shrink across generations within high-information strata?). Until then the
+defensible claim is only "adjacent models tie on the aggregate mixture," not
+"capability has saturated."
+
+Updated REPORT §7.1, docs/llm_overhead.md, paper/main.tex (abstract, §7, limits).

@@ -87,6 +87,38 @@ vendors*. The honest research position is not "scaling is over" but "the questio
 is only decidable on the one axis we instrument, and building vendor-neutral
 multimodal / agentic measurement is the prerequisite to deciding it anywhere else."
 
+## The deeper confound: "everyday" is not measured either (`adapters/info_content.py`)
+
+The verdict above is stated on the "everyday-text" projection — but **"everyday"
+was a colloquial stand-in, not a measured quantity**, the *same* assumed-not-earned
+trap as "hard." Information theory gives the real axis: the **shared context**
+between sender and receiver. High shared context ⇒ the message can be short
+(deictics, ellipsis); low shared context ⇒ the text must spell the context out
+(definitions, proper nouns). The axis is measurable — deictic density falls
+monotonically across registers (casual 0.35 → email 0.10 → news 0.06 → technical
+0.02 → formal 0.00); lexical diversity and word length rise. (gzip ratio is a
+*weak, non-monotone* proxy because it sees only in-text redundancy, not the
+external shared context; the faithful measure is LM cross-entropy / perplexity —
+i.e. the instrument is the same kind of object being judged.)
+
+This exposes a confound in the overhead verdict. High-shared-context (everyday)
+prompts have a **narrow correct-answer space — low capability-SNR by
+construction**: competent models converge to nearly the same good answer, so they
+*tie*. Therefore aggregate indistinguishability conflates **(a) capability
+saturation** with **(b) a prompt mix dominated by low-information tasks**. Arena
+preference is *not stratified by information content*, so it cannot separate (a)
+from (b). **For the capability-saturation question, the measurement is, in this
+respect, broken: an uncontrolled mixture.**
+
+The missing measurement (and the honest claim): stratify prompts by an
+info-content proxy (perplexity / deictic density / gzip), then test whether model
+win-rate gaps shrink *across generations within the high-information strata*. Only
+then is "capability has entered overhead" earned rather than an artifact of the
+prompt distribution. Until that stratified evaluation exists, the defensible claim
+is narrow: *on the aggregate blind-preference mixture, adjacent frontier models
+are near-indistinguishable* — which is true, and is **not** the same as "capability
+has saturated."
+
 ## Caveats (non-overclaim)
 
 - **Elo ≠ capability.** Arena measures aggregate blind *preference*, confounded by

@@ -78,6 +78,7 @@ adapters/robustness.py         robustness frontier (breakdown + recovery cost)
 adapters/changepoint.py        earned-vs-assumed structure (real Nile series)
 adapters/earned_threshold.py   the assumed/earned axis as one SNR curve + threshold
 adapters/llm_overhead.py       live application: has LLM scaling entered overhead?
+adapters/info_content.py       'everyday' is an unmeasured info-content axis (the confound)
 run_scorecard.py       cross-domain table + qualitative meta-pattern
 REPORT.md              consolidated verification-efficiency report
 results/               generated tables + plots

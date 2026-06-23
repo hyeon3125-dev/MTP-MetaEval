@@ -41,8 +41,10 @@ Elo$\to$win-rate map and pre-registered perceptibility floors, recent frontier L
 improvement is inside the overhead region \emph{on the everyday-text projection}
 (top-10 within 14~Elo, $\sim$51\% blind preference) but not on others (coding
 spread $\sim$256~Elo); and because capability is a vector whose multimodal,
-agentic, and vendor-specific axes are not benchmarked across vendors, the global
-claim ``scaling has saturated'' is itself assumed-not-earned. The contribution is
+agentic, and vendor-specific axes are not benchmarked across vendors---and whose
+``everyday'' axis is itself an unmeasured proxy that conflates capability
+saturation with a low-information prompt mix---the global claim ``scaling has
+saturated'' is itself assumed-not-earned. The contribution is
 the cross-domain synthesis and a pre-registered, fabrication-averse protocol that
 reports its own negatives---not new theory in any single field.
 \end{abstract}
@@ -232,6 +234,23 @@ vector. Falsifiable predictions: hard-category gaps stay above the floor while
 overall stays below; any $>35~\elo$ overall gap refutes the claim for that step;
 re-weighting toward hard prompts widens adjacent gaps back above the floor.
 
+\paragraph{And ``everyday'' is also unmeasured: the confound.} The one axis we
+called ``measurable'' is mis-named too. ``Everyday'' is properly an
+information-theoretic quantity---the \emph{shared context} between sender and
+receiver, measurable by deictic density (which falls monotonically casual$\to$formal
+in our samples), lexical diversity, and most faithfully by language-model
+perplexity (so the measuring instrument is the same kind of object being judged).
+High-shared-context prompts have a \emph{narrow} correct-answer space---low
+capability-SNR by construction---so competent models tie there regardless of
+saturation. The aggregate verdict therefore conflates (a) capability saturation
+with (b) a prompt mix dominated by low-information tasks, and Arena does not
+stratify preference by information content, so it cannot separate them: for the
+saturation question the benchmark is, in this respect, an uncontrolled mixture. The
+earned claim requires stratified evaluation---do model win-rate gaps shrink across
+generations \emph{within} high-information strata?---and until that exists the
+defensible statement is only ``adjacent models tie on the aggregate mixture,'' which
+is not ``capability has saturated.''
+
 \section{Related work}\label{sec:related}
 The overhead boundary is a Bayesian optimal-stopping rule \citep{wald1945,chow1971};
 \S\ref{sec:bound}'s bound is a standard risk identity. The efficiency metric is a
@@ -252,8 +271,11 @@ compute-excluded sensitivity for cosmology. The LLM analysis uses aggregate blin
 preference, which is confounded by style and is not capability; its strength is the
 exact Elo map and pre-registered floor, not precise rankings of unreleased models.
 Crucially, the multimodal and agentic axes lack the cross-vendor measurement needed
-to decide the overhead question there at all---a gap this paper names rather than
-fills.
+to decide the overhead question there at all, and even on text the aggregate does
+not stratify by information content---so the everyday-overhead reading conflates
+capability saturation with a low-information prompt mix. These are gaps this paper
+names (and gives measurable proxies for) rather than fills; closing them requires
+stratified, vendor-neutral evaluation that does not yet exist.
 
 \section{Conclusion}
 One pre-registered, fabrication-averse protocol shows that across number theory,
