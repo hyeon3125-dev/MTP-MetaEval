@@ -166,3 +166,28 @@ low ~4 Elo in 2025-02) + the exact Elo math, not invented per-model scores.
 This is the framework's most load-bearing application and the strongest
 why-care-now hook for a preprint: the same overhead-boundary law dates the
 diminishing returns of LLM scaling and locates them on the easy-task axis.
+
+## 2026-06-23 (cont.) — capability is a vector; "hard" is undefined (+ submittable form)
+
+Sharpened the LLM domain after a key objection: "hard tasks still earn" is
+under-specified because capability is a VECTOR, not a scalar, and most of it is
+not benchmarked cross-vendor.
+
+- `adapters/llm_overhead.py` now reports a capability-axis table: of 7 axes the
+  overhead verdict is *measurable* on 3 (all text; everyday→overhead, coding/math
+  →re-ranked) and *undetermined/unmeasurable* on 4 (agentic, long-context,
+  multimodal, vendor-specific) — no cross-vendor quantitative basis exists.
+  Verifiable, cited: Arena categories re-rank models; the leader tops no single
+  automated benchmark; benchmarks are fragmented (HLE/ARC-AGI-2/AIME/FrontierMath/
+  SWE-bench/τ²-Bench), least unified for multimodal.
+- New position: "has scaling entered overhead?" is ILL-POSED without naming the
+  projection; confirmed only on the everyday-text axis, unanswerable on multimodal/
+  agentic/vendor-specific for lack of measurement. Asserting GLOBAL overhead from
+  aggregate Elo is itself assumed-not-earned. docs/llm_overhead.md fully updated.
+
+Submittable-form pass:
+- REPORT §7.2 scope (RH/control are construction-flagged demonstrations, not
+  contributions; the un-flagged work is load-bearing).
+- REPORT §7.3 related work (SPRT/optimal stopping, AIC/BIC/MDL, Landauer/Bekenstein,
+  permutation/selective inference, Arena + scaling laws) — novelty claimed only in
+  synthesis + falsification discipline + the LLM projection framing, not new theory.

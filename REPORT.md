@@ -156,15 +156,73 @@ GPT-3.5→GPT-4 was ~100 Elo (earned); 2025–26 adjacent gaps are ~4–14 Elo
 (overhead). **On the median everyday prompt, recent frontier improvement is in the
 overhead region — more capability bought, ~zero perceptible marginal difference.**
 
-This is *not* a universal capability ceiling — it is the §6.1 SNR law per task.
-Overall Elo averages over mostly-easy prompts (low capability-SNR → imperceptible);
-on hard distributions (frontier math, agentic coding, long-context, tool-use) the
-SNR is high and the gaps are still earned. "Overhead entered" is true for commodity
-use, false for frontier-hard use. Caveats (Elo ≠ capability; aggregate ≠ per-task;
-benchmark saturation is a measurement ceiling) are in `docs/llm_overhead.md`. This
-is the framework's most load-bearing application: the same assumed-not-earned /
-overhead-boundary law that judged a dark-energy model now dates the diminishing
-returns of LLM scaling — and locates them precisely on the easy-task axis.
+This is *not* a universal capability ceiling — and "but it's still earned on
+*hard* tasks" is under-specified, which is the real finding. **Capability is a
+vector, not a scalar; the overhead verdict is a projection onto one axis, and the
+axes are measured wildly unequally.** Of seven capability axes, the verdict is
+*measurable* on three (all text: everyday preference → overhead; coding, math →
+re-ranked, so plausibly still earned) and *undetermined or unmeasurable* on four —
+agentic/tool-use, long-context fidelity, multimodal, and vendor-specific
+architecture — because **no cross-vendor quantitative benchmark exists** for them.
+Verifiable facts ground this: Arena category leaderboards re-rank models (overall
+#1 can be #5 in coding), the Arena leader tops no single automated benchmark, and
+benchmarks are fragmented (HLE, ARC-AGI-2, AIME, FrontierMath, SWE-bench, τ²-Bench)
+with no vendor-neutral basis, least of all for multimodal.
+
+So **"has scaling entered overhead?" is ill-posed without naming the projection.**
+It is confirmed on the everyday-text axis (low prompt-SNR — the §6.1 law),
+re-ranked on specialist text axes, and *unanswerable* on the multimodal / agentic /
+vendor-specific axes for lack of measurement. Asserting *global* overhead from
+aggregate Elo is itself **assumed-not-earned** — it assumes one easy-text
+projection captures the whole vector. The honest position is not "scaling is over"
+but "it is decidable only on the one axis we instrument; building vendor-neutral
+multimodal/agentic measurement is the prerequisite to deciding it anywhere else."
+Full treatment, table, and falsifiable predictions: `docs/llm_overhead.md`. This is
+the framework's most load-bearing application — the same law that judged a
+dark-energy model now both dates the diminishing returns of LLM scaling *and* shows
+the claim is only well-posed on the sliver of capability we actually measure.
+
+## 7.2 Scope: demonstrations vs contributions
+
+To avoid overclaiming: the RH-scanner and control-loop domains are **construction-
+flagged demonstrations**, not contributions — they illustrate the floor where a
+win is near-tautological. The load-bearing evidence is the un-flagged, ground-truth
+work: the bounded-risk theorem and its failure (§2–3), the historical record (§4),
+the cosmology negative and Nile positive cases with the SNR threshold (§5–6.1), and
+the LLM application (§7.1). The contribution is the **cross-domain synthesis**, the
+**falsification discipline** (pre-registration, honest negatives, construction
+flags, no fabricated numbers), and the **assumed-not-earned law** — not a new
+theorem in any single domain.
+
+## 7.3 Related work
+
+This sits at the confluence of mature fields and claims novelty only in their
+synthesis and disciplined application, not in their theory:
+
+- **Optimal stopping / sequential analysis** — Wald's SPRT (1945); optimal
+  stopping (Chow–Robbins–Siegmund 1971); Bayesian sequential decision theory. The
+  overhead boundary `q(t) ≤ ε` is a Bayesian stopping rule; §2's bound is a
+  standard risk identity. Our framing adds the *cross-domain* read and the
+  assumed-not-earned failure analysis.
+- **Model selection / complexity** — AIC (Akaike 1974), BIC (Schwarz 1978), MDL
+  (Rissanen 1978). The efficiency metric `phenomena/(params+assumptions+compute)`
+  is an explicit, transparent cousin; §6 uses AIC + permutation calibration.
+- **Thermodynamics of computation** — Landauer (1961), Bekenstein (1981): the
+  entropy floor that makes "stop accumulating" physically, not just statistically,
+  motivated (the RH demonstration's premise).
+- **Resampling / multiple comparisons** — Fisher permutation tests; the §6.1
+  result that a searched changepoint must be null-calibrated is the classic
+  selective-inference hazard.
+- **LLM evaluation & scaling** — Chatbot Arena / LMArena (Chiang et al. 2024) for
+  the Elo↔win-rate map; neural scaling laws (Kaplan et al. 2020; Hoffmann et al.
+  2022 "Chinchilla"); the benchmark-saturation and emergent-ability debates. §7.1's
+  contribution is to pose diminishing returns as an *overhead-boundary, projection-
+  dependent measurement* question rather than a capability claim.
+
+What is new here is not any of these tools but the demonstration that **one
+assumed-not-earned law** organizes verification-stopping *and* structure-adding
+across number theory, physics, control, statistics, and LLM evaluation — under a
+pre-registered, fabrication-averse protocol that reports its own negatives.
 
 ## 8. What this is / is not
 

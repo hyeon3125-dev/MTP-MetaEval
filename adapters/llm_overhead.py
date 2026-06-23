@@ -53,6 +53,58 @@ HISTORICAL_GAPS = [
 TOP_TIER_SPREAD_2026 = 55.0    # cited: top tier within ~55 Elo (June 2026)
 TOP_TIER_N = 5
 
+# Capability is a VECTOR, not a scalar. The overhead verdict is a projection onto
+# an axis, and the axes are measured very unequally. Fields: (axis, cross-vendor
+# quantitative benchmark?, what the overhead verdict can be). Verifiable
+# qualitative facts only — no invented per-model scores.
+#   Cited: Arena category leaderboards RE-RANK models (overall #1 can be #5 in
+#   coding; Claude->Expert/Coding, Gemini->Vision/Multi-Turn, DeepSeek->Math).
+#   The Arena leader tops no single automated benchmark. Benchmarks are
+#   fragmented (HLE, ARC-AGI-2, AIME, FrontierMath, SWE-bench, tau2-Bench, ...).
+CAPABILITY_AXES = [
+    # axis, measured cross-vendor?, verdict basis
+    ("everyday text preference (aggregate Elo)", "yes (Arena overall)",
+     "OVERHEAD confirmed (~14 Elo adjacent, 52% pref)"),
+    ("coding (text)", "partial (Arena Coding, SWE-bench)",
+     "RE-RANKED vs overall -> projection-dependent; plausibly still earned"),
+    ("math / reasoning (text)", "partial (AIME, FrontierMath, Arena Math)",
+     "RE-RANKED; specialist models lead -> earned on this axis"),
+    ("agentic / tool-use (end-to-end)", "weak / non-comparable (tau2-Bench, bespoke)",
+     "UNDETERMINED — no stable cross-vendor metric"),
+    ("long-context retrieval fidelity", "weak / non-comparable",
+     "UNDETERMINED — harnesses and context lengths differ per vendor"),
+    ("multimodal (vision/audio/video) quality", "fragmented, NOT cross-vendor unified",
+     "UNMEASURABLE at parity — no common basis"),
+    ("vendor-specific architecture features", "none (by definition incomparable)",
+     "ILL-POSED — the axis is not shared across vendors"),
+]
+
+
+def capability_vector_report():
+    print("\n  Capability is a VECTOR; 'overhead' is a PROJECTION onto an axis.")
+    print("  The axes are measured very unequally (cited: Arena categories re-rank")
+    print("  models; the Arena leader tops no single automated benchmark):\n")
+    print(f"    {'capability axis':<42}{'cross-vendor metric?':<24}verdict")
+    measured = unmeasured = 0
+    for axis, metric, verdict in CAPABILITY_AXES:
+        head = verdict.split(" ")[0].rstrip(";")
+        if head in ("UNDETERMINED", "UNMEASURABLE", "ILL-POSED"):
+            unmeasured += 1
+        else:
+            measured += 1
+        print(f"    {axis:<42}{metric[:23]:<24}{head}")
+    print(f"\n  Of {len(CAPABILITY_AXES)} axes, the overhead verdict is *measurable* on "
+          f"{measured} (all text)\n  and *undetermined / unmeasurable* on {unmeasured} "
+          f"(agentic, long-context, multimodal,\n  vendor-specific) — no cross-vendor "
+          f"quantitative basis exists for them.")
+    print("\n  => 'has scaling entered overhead?' is ILL-POSED without naming the")
+    print("     projection. It is CONFIRMED only on the everyday-text axis, RE-RANKED")
+    print("     (so likely still earned) on specialist text axes, and UNANSWERABLE on")
+    print("     the multimodal / agentic / vendor-specific axes for lack of measurement.")
+    print("     Asserting GLOBAL overhead from aggregate Elo is itself assumed-not-earned:")
+    print("     it assumes one easy-text projection captures the whole capability vector.")
+    return measured, unmeasured
+
 
 def main():
     print("=" * 74)
@@ -87,12 +139,8 @@ def main():
     print("    recent generations are in the overhead region: more capability is")
     print("    being bought, but the marginal user-perceptible difference is ~0.")
 
-    print("\n  BUT — the task-dependence IS the §6.1 SNR law (NOT a universal ceiling):")
-    print("    Overall Elo averages over mostly-easy prompts (low capability-SNR ->")
-    print("    imperceptible). On HARD distributions (frontier math, agentic coding,")
-    print("    long-context, tool-use) the capability-SNR is high and the gaps are")
-    print("    still earned. 'Overhead entered' is true for commodity use, false for")
-    print("    frontier-hard use — position on the same SNR curve, per task.")
+    print("\n  BUT 'overhead' is per-axis, and 'hard' is not a defined metric ----")
+    capability_vector_report()
 
     print("\n  CAVEATS (non-overclaim):")
     print("   - Elo = aggregate blind preference, dominated by everyday prompts;")

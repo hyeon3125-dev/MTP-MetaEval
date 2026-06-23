@@ -42,15 +42,50 @@ frontier improvement is in the overhead region — capability is still being bou
 (compute, parameters, training), but the marginal *user-perceptible* difference is
 ≈ 0.
 
-## Why this is the §6.1 SNR law, not a ceiling
+## "Overhead" is a projection — and "hard" is not a defined metric
 
-Overall Elo averages over a prompt mix dominated by easy/everyday queries — a
-*low capability-SNR* regime where even large underlying capability gaps produce
-near-coin-flip preferences. On hard distributions (frontier math, agentic coding,
-long-context reasoning, tool-use) the capability-SNR is high and the gaps remain
-earned (Arena's hard-prompt / coding category spreads are wider than the overall).
-So "overhead entered" is **task-conditional**: position on the same detection curve
-as `earned_threshold.py`, evaluated per task difficulty.
+The naive next move is "but on *hard* tasks the gains are still earned." That is
+under-specified, and the under-specification is the real finding. **Capability is
+a vector, not a scalar**, and the overhead verdict is a *projection* onto one axis:
+
+| capability axis | cross-vendor quantitative metric? | overhead verdict |
+|-----------------|-----------------------------------|------------------|
+| everyday text preference (aggregate Elo) | yes (Arena overall) | **OVERHEAD confirmed** |
+| coding (text) | partial (Arena Coding, SWE-bench) | **re-ranked** → projection-dependent |
+| math / reasoning (text) | partial (AIME, FrontierMath) | **re-ranked** → still earned on-axis |
+| agentic / tool-use (end-to-end) | weak / non-comparable (τ²-Bench, bespoke) | **undetermined** |
+| long-context retrieval fidelity | weak / non-comparable | **undetermined** |
+| multimodal (vision/audio/video) | fragmented, **not** cross-vendor unified | **unmeasurable** |
+| vendor-specific architecture features | none (incomparable by definition) | **ill-posed** |
+
+Verifiable, citable facts (no invented scores): Arena category leaderboards
+**re-rank** models — a model #1 overall can be #5 in coding; Claude gains on
+Expert/Coding, Gemini on Vision/Multi-Turn, DeepSeek on Math/Reasoning — and the
+Arena leader tops **no single automated benchmark**. Benchmarks are fragmented
+across axes (HLE, ARC-AGI-2, AIME, FrontierMath, SWE-bench, τ²-Bench, …) with **no
+unified, vendor-neutral basis**, least of all for **multimodal** capability.
+
+Consequences:
+
+1. **The verdict is projection-dependent.** Overhead is *confirmed* only on the
+   everyday-text axis (where the prompt-distribution SNR is low — the §6.1 law);
+   on specialist text axes the ordering changes, so the gaps are plausibly still
+   earned; on the remaining axes there is **no measurement to project onto**.
+2. **For most of the capability vector the question is unanswerable.** Agentic,
+   long-context, and especially multimodal capability — and any vendor-specific
+   architectural specialization — have no cross-vendor quantitative benchmark. The
+   overhead boundary cannot be located on an axis no one measures comparably.
+3. **Asserting *global* overhead from aggregate Elo is itself assumed-not-earned.**
+   It assumes one easy-text projection captures the whole vector — the exact
+   error this framework warns against. The disciplined claim is *scoped*: overhead
+   is established on the measured everyday-text projection and is **undetermined**
+   elsewhere, pending measurement infrastructure that does not yet exist.
+
+So "hard" should be read not as a metric but as "axes where the capability-SNR is
+high" — a set that is *incompletely enumerated and largely unmeasured across
+vendors*. The honest research position is not "scaling is over" but "the question
+is only decidable on the one axis we instrument, and building vendor-neutral
+multimodal / agentic measurement is the prerequisite to deciding it anywhere else."
 
 ## Caveats (non-overclaim)
 
