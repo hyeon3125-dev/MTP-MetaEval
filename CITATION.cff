@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Assumed-not-Earned: Verification Efficiency under Bounded Risk"
+abstract: >-
+  A cross-domain study of when verification should stop, given a cost of checking
+  and a risk of being wrong. A non-refutation overhead boundary has a provable risk
+  bound under a correct prior and a silent, unbounded failure under misspecification;
+  the same law governs whether added model structure is earned. Spans number theory,
+  cosmology, control, statistics, and LLM evaluation under a pre-registered,
+  fabrication-averse protocol.
+type: software
+authors:
+  - family-names: Lee
+    given-names: Seung-hyun
+    email: hyeon3125@gmail.com
+repository-code: "https://github.com/hyeon3125-dev/MTP-MetaEval"
+url: "https://github.com/hyeon3125-dev/MTP-MetaEval"
+keywords:
+  - computational verification
+  - optimal stopping
+  - statistical decision theory
+  - model selection
+  - reliability engineering
+  - LLM evaluation
+version: "0.1.0"
+date-released: "2026-06-23"
+# Once a Zenodo DOI is minted (see paper/PUBLISHING.md), add:
+# doi: "10.5281/zenodo.XXXXXXX"
+preferred-citation:
+  type: report
+  title: "Assumed-not-Earned: Verification Efficiency under Bounded Risk"
+  authors:
+    - family-names: Lee
+      given-names: Seung-hyun
+  year: 2026
+  url: "https://github.com/hyeon3125-dev/MTP-MetaEval"
