@@ -24,8 +24,14 @@ keywords:
   - LLM evaluation
 version: "0.1.0"
 date-released: "2026-06-23"
-# Once a Zenodo DOI is minted (see paper/PUBLISHING.md), add:
-# doi: "10.5281/zenodo.XXXXXXX"
+doi: "10.5281/zenodo.20806118"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20806118"
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.20806119"
+    description: "Version DOI (v0.1)"
 preferred-citation:
   type: report
   title: "Assumed-not-Earned: Verification Efficiency under Bounded Risk"
@@ -33,4 +39,5 @@ preferred-citation:
     - family-names: Lee
       given-names: Seung-hyun
   year: 2026
-  url: "https://github.com/hyeon3125-dev/MTP-MetaEval"
+  doi: "10.5281/zenodo.20806118"
+  url: "https://doi.org/10.5281/zenodo.20806118"

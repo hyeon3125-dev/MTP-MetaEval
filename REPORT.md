@@ -271,3 +271,12 @@ python adapters/llm_overhead.py          # §7.1 overhead region in LLM capabili
 Navigation: [README](README.md) · [PREREGISTRATION](PREREGISTRATION.md) ·
 [worklog](worklog.md) · docs/[overhead_boundary](docs/overhead_boundary.md) ·
 docs/[real_conjectures](docs/real_conjectures.md) · `results/`.
+
+## Cite
+
+> Lee, Seung-hyun. *Assumed-not-Earned: Verification Efficiency under Bounded
+> Risk.* 2026. Zenodo. DOI: [10.5281/zenodo.20806118](https://doi.org/10.5281/zenodo.20806118).
+
+Concept DOI `10.5281/zenodo.20806118` (always resolves to the latest version);
+v0.1 version DOI `10.5281/zenodo.20806119`. Machine-readable metadata in
+[CITATION.cff](CITATION.cff).

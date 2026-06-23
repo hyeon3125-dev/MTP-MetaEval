@@ -1,7 +1,10 @@
 # MTP-MetaEval — explanatory-efficiency scorecard
 
-> **arXiv-ready manuscript:** [paper/main.tex](paper/main.tex) (+ figs, refs.bib);
-> how to publish it (Zenodo DOI; arXiv needs endorsement) in [paper/PUBLISHING.md](paper/PUBLISHING.md).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20806118.svg)](https://doi.org/10.5281/zenodo.20806118)
+
+> **Preprint (DOI):** [10.5281/zenodo.20806118](https://doi.org/10.5281/zenodo.20806118)
+> · manuscript [paper/main.tex](paper/main.tex) · publishing notes
+> [paper/PUBLISHING.md](paper/PUBLISHING.md).
 >
 > **Start here:** [REPORT.md](REPORT.md) — the consolidated report (the spine).
 > Then: [PREREGISTRATION.md](PREREGISTRATION.md) (rules fixed before results) ·
