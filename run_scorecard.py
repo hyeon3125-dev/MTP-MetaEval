@@ -17,14 +17,15 @@ import sys
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(__file__))
-from adapters import cosmology, riemann, control            # noqa: E402
+from adapters import cosmology, riemann, control, sequential  # noqa: E402
 
-ADAPTERS = {"cosmology": cosmology, "riemann": riemann, "control": control}
+ADAPTERS = {"cosmology": cosmology, "riemann": riemann,
+            "control": control, "sequential": sequential}
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--domains", default="cosmology,riemann,control")
+    ap.add_argument("--domains", default="cosmology,riemann,control,sequential")
     ap.add_argument("--res-dir", default=os.path.join(os.path.dirname(__file__), "results"))
     args = ap.parse_args()
     names = [d.strip() for d in args.domains.split(",") if d.strip()]
@@ -79,16 +80,25 @@ def main() -> None:
     improves = [d.domain for d in domains if d.verdict == "improves"]
     worse = [d.domain for d in domains if d.verdict == "worse"]
     flagged = [d.domain for d in domains if d.construction_flag != "none"]
+    unflagged = [d.domain for d in domains if d.construction_flag == "none"]
     print(f"  improves: {improves or '—'}")
     print(f"  worse   : {worse or '—'}")
     print(f"  construction-flagged wins (weak evidence): {flagged or '—'}")
-    print("  Reading: the principle is a COST/COMPRESSION rule. It improves efficiency")
-    print("  where the bottleneck is wasteful accumulation (RH entropy, control")
-    print("  iterations) but NOT where the task needs added explanatory structure")
-    print("  (cosmology). Both 'improves' are construction-flagged, so they are weak")
-    print("  evidence; the one genuine-baseline test (cosmology) goes against MTP.")
-    print("  => Support for the axiom as a universal modeling principle is NOT")
-    print("     established; it behaves as a verification-stopping heuristic.")
+    print(f"  un-flagged (genuine-baseline) domains: {unflagged or '—'}")
+    print("  Reading: MTP is a COST/COMPRESSION rule, and the cost it compresses is")
+    print("  WASTEFUL ACCUMULATION — it helps there (RH entropy, control iterations)")
+    print("  but not where the task needs added explanatory structure (cosmology).")
+    print("  The RH/control wins are construction-flagged (weak). The two un-flagged")
+    print("  ground-truth tests are decisive:")
+    print("   - cosmology: MTP is clearly WORSE (adds structure, no coverage gain).")
+    print("   - sequential refutation: the floor achieves BOUNDED-RISK compute saving")
+    print("     in-distribution (miss_rate <= eps, ~94% saved) — so 'stop at a")
+    print("     principled floor' is a valid, non-nihilistic methodology — BUT the")
+    print("     efficiency RATIO is only neutral, because the saving is bought with an")
+    print("     added prior assumption that BREAKS under distribution shift.")
+    print("  => MTP is a risk-bounded verification-STOPPING heuristic, not a universal")
+    print("     compression principle: it trades a modeling assumption for compute, a")
+    print("     net gain only when that assumption holds and compute is the bottleneck.")
 
     os.makedirs(args.res_dir, exist_ok=True)
     pd.DataFrame(rows).to_csv(os.path.join(args.res_dir, "scorecard.csv"), index=False)

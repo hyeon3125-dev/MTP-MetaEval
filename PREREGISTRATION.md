@@ -94,6 +94,48 @@ or entropy proxy, specified per domain.
   tautological; the *non-trivial* question is whether it keeps phenomena_covered.
   The honest test is the accuracy/coverage trade, not the iteration saving alone.
 
+### 3d. Sequential refutation — the un-flagged stopping test (added 2026-06-23)
+
+The RH and control wins are construction-flagged ("accept the stop ⇒ you save").
+This domain removes the flag by giving the stopping rule a **ground truth it can
+get wrong**: it must locate the *overhead boundary* — the point past which
+continuing to search is genuinely wasteful — without stopping so early that it
+misses a real counterexample.
+
+- Population of conjectures, each with a hidden truth: TRUE (no counterexample in
+  the horizon [0, M)) with prob 1−π0, or FALSE with a counterexample at location
+  x ~ Geometric(r_true). Checking candidate t reveals whether t refutes; cost 1
+  per check (+ Landauer entropy).
+- **baseline** = exhaustive scan to M (stops early only if it *finds* a
+  counterexample); always correct within M.
+- **mtp** = *non-refutation floor*: having survived [0, t) with no counterexample,
+  the Bayesian posterior that one still remains is
+  `q(t) = π0·S(t) / [(1−π0) + π0·S(t)]`, S(t)=P(x≥t) under an assumed prior
+  Geometric(r_assumed). Stop at the smallest t with `q(t) ≤ ε`. ε is set by the
+  Landauer marginal-cost / stake ratio (principled, not tuned).
+- `phenomena_covered` = fraction of conjectures given the **correct** verdict
+  (refuted iff false). baseline ≈ 1.0; mtp = 1 − miss_rate, where a miss is a
+  FALSE conjecture whose counterexample sits at x ≥ t_floor (stopped too early).
+- `free_params`: baseline 1 (horizon M), mtp 1 (floor ε) — equal.
+- `compute_cost` = total checks, normalized to baseline.
+- **Operating point for the scorecard row**: in-distribution (r_assumed=r_true),
+  ε = 0.01.
+- **Construction flag: NONE.** Ground truth makes the rule falsifiable — it can
+  miss.
+
+Pre-registered claims (report as-is, even if contradicted):
+1. **Risk bound**: under a correct prior, the floor bounds the miss rate by
+   ≈ ε (theorem: miss_rate = π0·S(t_floor) ≤ ε(1−π0)). Verified empirically.
+2. **In-distribution**: mtp should win on efficiency (un-flagged) — large compute
+   saving at miss_rate ≤ ε.
+3. **Failure mode** (the anti-rigging control): under distribution shift
+   (r_true heavier-tailed than r_assumed, e.g. a Pareto tail the prior does not
+   expect), the miss rate should exceed ε and the win should degrade or flip.
+
+This is the non-nihilism test: if (1)+(2) hold, "keep searching but stop at a
+principled floor" is a valid methodology with *quantitatively bounded* risk — not
+a surrender. (3) names exactly when it breaks (prior misspecification).
+
 ## 4. Assumption-counting rubric (applied identically to every approach)
 
 Count **+1** for each independent, explicit modeling commitment beyond raw

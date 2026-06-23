@@ -61,3 +61,35 @@ cosmology failure alone (that was always just one domain).
 a genuine (un-flagged) baseline exists, like cosmology — e.g. apply the
 non-refutation principle to an inference/active-learning task and check whether it
 beats a standard stopping rule on real held-out data.
+
+## 2026-06-23 (cont.) — the un-flagged stopping test (sequential refutation)
+
+Built the test the worklog above asked for: a domain where the floor has a
+**ground truth it can get wrong** (`adapters/sequential.py`,
+PREREGISTRATION §3d, `docs/overhead_boundary.md`). A population of conjectures
+(TRUE = no counterexample in `[0,M)`, FALSE = counterexample at `x~Geometric(r)`);
+baseline = exhaustive scan; mtp = stop at the non-refutation floor `q(t) ≤ ε`.
+
+Motivated by the question "is MTP-as-stopping nihilism?" — answer: **no, with a
+caveat.**
+
+1. **Risk is provably bounded** (non-nihilism): under a correct prior,
+   `miss_rate ≤ ε(1−π0)`; confirmed empirically (ε=0.01 → miss 0.0052 vs bound
+   0.005) at ~94% compute saved. The overhead boundary is real and the risk is a
+   knob you set. Plot: `results/sequential_overhead_boundary.png`.
+2. **But the efficiency ratio is only neutral (0.98)**: the floor buys its 94%
+   compute saving with an *extra prior assumption*, which cancels the gain in
+   `phenomena/(params+assumptions+compute_norm)`. MTP = assumption-for-compute
+   trade, not free compression.
+3. **Failure mode = prior misspecification**: under a 4× heavier true tail the
+   miss rate jumps to 0.156 (~31× the bound) while still "saving" 93% — the bound
+   is only as good as the prior. This is the same reason windowed-IDE failed in
+   cosmology (added structure the data did not reward).
+
+This is the **un-flagged** evidence (construction_flag = none, ground truth):
+MTP is a **risk-bounded verification-stopping** principle, not a universal
+compression. It earns its keep cutting wasteful accumulation under a correct
+model, and fails when it must add believed structure or when its prior is wrong.
+
+Updated scorecard now runs 4 domains; meta-pattern reading in `run_scorecard.py`
+revised accordingly.

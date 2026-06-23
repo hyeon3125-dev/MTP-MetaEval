@@ -62,10 +62,65 @@ results/scorecard.csv  generated
 
 ## Result (see worklog for the run)
 
-The pattern is honest and mixed (and was the pre-registered expectation): the
-principle improves efficiency where the bottleneck is **wasteful accumulation**
-(RH entropy, control iterations) but **not** where the task requires **adding
-explanatory structure** (cosmology). Crucially, both "improves" verdicts are
-*construction-flagged* (weak evidence), while the one genuine-baseline test
-(cosmology) goes **against** MTP. So MTP is supported as a **verification-stopping
-heuristic**, **not** as a universal modeling principle. See [worklog.md](worklog.md).
+Four domains (per-domain ratio = E_mtp/E_baseline):
+
+| domain | ratio | verdict | flag |
+|--------|------:|---------|------|
+| cosmology | ≈0.02 | worse | none (genuine baseline) |
+| number theory (RH) | 2.31 | improves | partial (by-construction) |
+| engineering control | 1.74 | improves | partial (by-construction) |
+| sequential refutation | 0.98 | neutral | **none (ground truth)** |
+
+The RH/control wins are construction-flagged (weak). The two **un-flagged**
+ground-truth tests are decisive:
+
+- **cosmology** — MTP is clearly *worse*: it adds parameters and assumptions
+  (and ODE compute) with no coverage gain.
+- **sequential refutation** ([docs/overhead_boundary.md](docs/overhead_boundary.md))
+  — the non-refutation floor achieves **bounded-risk** compute savings
+  (`miss_rate ≤ ε`, ~94% saved) in-distribution, so "stop at a principled floor"
+  is a *real, non-nihilistic methodology* — **but** the efficiency ratio is only
+  neutral, because the saving is bought with an added prior assumption that
+  **breaks under distribution shift** (miss rate → 0.16, ~31× the bound).
+
+So MTP is a **risk-bounded verification-stopping heuristic** that trades a
+modeling assumption for compute — a net gain only when compute is the bottleneck
+*and* the prior holds — **not** a universal compression principle. It helps where
+the cost is *wasteful accumulation*, and loses where the task needs *added
+structure* (cosmology) or its prior is wrong (the shift). See
+[worklog.md](worklog.md).
+
+## Final Assessment
+
+**Windowed IDE was falsified; MTP-MetaEval survived.**
+
+The windowed interacting dark energy implementation was not supported by current observational data. Across DESI DR1 BAO, Gold-2018 RSD, and Planck 2018 distance priors, the coupling amplitude was consistently driven toward the no-coupling limit, and the model failed to outperform either ΛCDM or CPL under standard model-selection criteria.
+
+However, this result does not falsify the underlying MTP axiom. It falsifies one specific instantiation of that axiom within a cosmological context.
+
+The primary outcome of this project is therefore not a new cosmological model, but a reproducible framework for evaluating explanatory efficiency across domains.
+
+The resulting MTP-MetaEval framework treats scientific and engineering approaches as comparable verification systems and evaluates them under a common schema:
+
+* empirical adequacy,
+* parameter complexity,
+* assumption burden,
+* computational cost,
+* verification efficiency.
+
+Under this interpretation, the cosmology project becomes one benchmark within a larger cross-domain evaluation program.
+
+The current evidence supports MTP as a **verification-stopping and efficiency-evaluation heuristic**, particularly in domains where the dominant cost arises from redundant accumulation beyond a practical precision floor.
+
+The evidence does **not** currently support MTP as a universal scientific modeling principle.
+
+Accordingly, the retained asset of the project is not the windowed IDE model itself, but the validation infrastructure:
+
+* model registry,
+* likelihood engine,
+* MCMC pipeline,
+* Bayesian evidence framework,
+* cross-model comparison methodology,
+* reproducible falsification workflow.
+
+Future work should focus on evaluating additional domain instantiations under the same framework rather than attempting to preserve the windowed IDE implementation.

@@ -33,3 +33,12 @@ CONTROL = {
     "baseline": 2 + 1,   # "fixed N is safe everywhere"
     "mtp": 2 + 1,        # "noise-floor stop is safe"
 }
+
+# Sequential refutation: shared "a check reveals refutation truthfully" = 1.
+# baseline assumes the horizon M is sufficient; mtp assumes a generative prior
+# (false-prob + counterexample-location law) — the very assumption that fails
+# under distribution shift.
+SEQUENTIAL = {
+    "baseline": 1 + 1,   # + "horizon M sufficient"
+    "mtp": 1 + 2,        # + prior(pi0) + CE-location law
+}
