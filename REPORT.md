@@ -139,19 +139,28 @@ applies *to the detector*: deciding whether structure is earned is itself a
 verification that must be null-calibrated, or it manufactures structure from noise
 half the time.
 
-### 7.1 Live application — has LLM capability entered the overhead region? (`adapters/llm_overhead.py`)
+### 7.1 Live application — the capability-measurement problem (why "LLM saturation" is ill-posed)
 
-The same overhead boundary, with model *generations* as the accumulation axis and
-*user-perceptible difference* as the floor. The one exact ingredient is LMArena's
-own Elo→blind-win-rate map, `P(win) = 1/(1+10^(−ΔElo/400))` (100 Elo → 0.640;
-identity, no data). Pre-registered perceptibility floors: "barely perceptible" at a
-55% win-rate (ΔElo ≥ 35), "noticeable" at 60% (≥ 70). Real per-model Elo are cited,
-not invented (openlm.ai / arena.ai overall leaderboard, June 2026).
+This section is **not** a verdict on whether LLMs have saturated. It is the sharper,
+*metrology* claim: **"capability saturation" is not a well-formed statement without a
+capability metric, and no cross-vendor capability metric exists** — so the
+pro-saturation and the anti-saturation positions are *both* assumed-not-earned. As
+in physics, an unmeasurable quantity is an undefined one; here, "Capability
+Saturation" presupposes a "Capability Metric" that has not been built. Applying the
+overhead boundary to LLM *generations* is the lens that surfaces this: the verdict is
+clean only on the one axis we actually instrument, and that axis is not capability.
 
-**(1) Aggregate text — inside the overhead region.** The real overall/text top-10
+The one exact ingredient is LMArena's own Elo→blind-win-rate map,
+`P(win) = 1/(1+10^(−ΔElo/400))` (100 Elo → 0.640; identity, no data). Pre-registered
+perceptibility floors: "barely perceptible" at a 55% win-rate (ΔElo ≥ 35),
+"noticeable" at 60% (≥ 70). Real per-model Elo are cited, not invented (openlm.ai /
+arena.ai overall leaderboard, June 2026).
+
+**(1) The one axis we measure — aggregate blind preference — has gone flat.** Note
+this axis is *everyday-text preference*, not capability. The real overall/text top-10
 spans **14 Elo** (Fable 5 = 1510 down to Grok-4.20 = 1496), so the largest adjacent
 gap is **~7 Elo → ~51% blind preference** — well below the 35-Elo floor. The
-per-generation marginal gain has *crossed* the floor over time:
+per-generation marginal gain on this axis has *crossed* the floor over time:
 
 | transition | ΔElo | blind win | regime |
 |---|---:|---:|---|
@@ -212,12 +221,14 @@ assumed-not-earned — the same recursion as the §6.1 detector self-test.
 
 **Falsifiable predictions** (`docs/llm_overhead.md`): hard-category Elo gaps stay
 above the floor while overall stays below; any >35-Elo *overall* gap refutes the
-claim for that step; re-weighting Arena toward hard prompts widens adjacent gaps
-back above the floor. This is the framework's most load-bearing application: the
-same assumed-not-earned law that judged a dark-energy model dates the diminishing
-returns of LLM scaling *and* shows the claim is well-posed only on the sliver of
-capability we actually measure — at three nested levels (axis, info-content,
-proxy), each of which must itself be earned.
+flatness on that axis for that step; re-weighting Arena toward hard prompts widens
+adjacent gaps back above the floor. This is the framework's most load-bearing
+application — and a **metrology** result, not a saturation verdict: the same
+assumed-not-earned law that judged a dark-energy model shows that "capability
+saturation" is undefined until a cross-vendor capability metric exists, and that the
+measurement gap recurs at three nested levels (axis, info-content, proxy), each of
+which must itself be earned. The contribution is the *capability-measurement
+problem*, not a position in the scaling debate.
 
 ## 7.2 Scope: demonstrations vs contributions
 
@@ -253,8 +264,9 @@ synthesis and disciplined application, not in their theory:
 - **LLM evaluation & scaling** — Chatbot Arena / LMArena (Chiang et al. 2024) for
   the Elo↔win-rate map; neural scaling laws (Kaplan et al. 2020; Hoffmann et al.
   2022 "Chinchilla"); the benchmark-saturation and emergent-ability debates. §7.1's
-  contribution is to pose diminishing returns as an *overhead-boundary, projection-
-  dependent measurement* question rather than a capability claim.
+  contribution is to reframe the scaling debate as a *capability-measurement
+  (metrology) problem* — "saturation" is undefined without a cross-vendor metric —
+  rather than to take a side on whether scaling has stalled.
 
 What is new here is not any of these tools but the demonstration that **one
 assumed-not-earned law** organizes verification-stopping *and* structure-adding
@@ -287,7 +299,7 @@ python adapters/robustness.py            # §3 robustness frontier
 python adapters/real_conjectures.py      # §4 historical validation
 python adapters/changepoint.py           # §6 earned vs assumed structure (real Nile)
 python adapters/earned_threshold.py      # §6.1 the SNR detection curve + threshold
-python adapters/llm_overhead.py          # §7.1 overhead region in LLM capability
+python adapters/llm_overhead.py          # §7.1 the capability-measurement problem
 ```
 
 Navigation: [README](README.md) · [PREREGISTRATION](PREREGISTRATION.md) ·

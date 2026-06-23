@@ -1,8 +1,13 @@
-# The overhead region in LLM capability
+# The LLM capability-measurement problem
 
-Applying the overhead boundary (`docs/overhead_boundary.md`) to LLM progress, with
-model *generations / training compute* as the accumulation axis and
-*user-perceptible capability difference* as the floor. `adapters/llm_overhead.py`.
+**Not a verdict on whether LLMs have saturated** — the sharper, *metrology* claim:
+"capability saturation" is undefined without a cross-vendor capability metric, and
+none exists, so both the pro- and the anti-saturation position are
+assumed-not-earned (as in physics, an unmeasurable quantity is an undefined one).
+Applying the overhead boundary (`docs/overhead_boundary.md`) to LLM *generations*
+(floor = user-perceptible difference) is the lens that surfaces this: the verdict
+is clean only on the one axis we instrument, and that axis is not capability.
+`adapters/llm_overhead.py`.
 
 ## The one exact ingredient (no fabrication)
 
@@ -34,17 +39,20 @@ the largest adjacent gap is **~7 Elo**. Sources:
 [benchlm.ai history](https://benchlm.ai/llm-leaderboard-history).
 
 - Adjacent frontier models ~7 Elo apart → **~51% blind preference** → below the
-  35-Elo (55%) floor → **inside the overhead region**.
+  35-Elo (55%) floor → flat **on this everyday-text axis** (which is not capability).
 - Marginal gain per generation, over time: GPT-3.5→GPT-4 ≈ 100 Elo (earned) →
   2024 ≈ 50 (earned) → 2025–26 ≈ 4–14 (overhead). The trend has crossed the floor.
 - Projection contrast (same frontier): overall/text spread **14 Elo** vs **coding
   top-tier spread ~256 Elo** (1310–1566) — **18× wider** — so the models that tie on
   everyday text are clearly separated on coding. Overhead is per-axis (next section).
 
-**Conclusion (scoped):** on the distribution of everyday user prompts, recent
-frontier improvement is in the overhead region — capability is still being bought
-(compute, parameters, training), but the marginal *user-perceptible* difference is
-≈ 0.
+**Conclusion (scoped):** on the *one axis we measure* — aggregate everyday-text
+blind preference — adjacent frontier models tie. That is a statement about this
+measurement axis, **not** about capability: it does not say "scaling has saturated,"
+because (next sections) capability is a vector whose other axes are unmeasured, the
+"everyday" axis is itself an unmeasured proxy, and even the proxy is
+prior-calibrated. The headline is the *measurement problem*, not a saturation
+verdict.
 
 ## "Overhead" is a projection — and "hard" is not a defined metric
 

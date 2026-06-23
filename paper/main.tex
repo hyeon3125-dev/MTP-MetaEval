@@ -36,17 +36,16 @@ the same answer: a localized (``windowed'') model loses on cosmological data
 and the two cases are one detection curve in the structure's signal-to-noise
 ratio (SNR). One law organizes every result: \textbf{a verification shortcut is
 worth exactly the degree its assumptions match reality; its failure mode is always
-assumed-not-earned.} We close with a live application: using the exact LMArena
-Elo$\to$win-rate map and pre-registered perceptibility floors, recent frontier LLM
-improvement is inside the overhead region \emph{on the everyday-text projection}
-(top-10 within 14~Elo, $\sim$51\% blind preference) but not on others (coding
-spread $\sim$256~Elo); and because capability is a vector whose multimodal,
-agentic, and vendor-specific axes are not benchmarked across vendors---and whose
-``everyday'' axis is itself an unmeasured proxy that conflates capability
-saturation with a low-information prompt mix---the global claim ``scaling has
-saturated'' is itself assumed-not-earned. The contribution is
-the cross-domain synthesis and a pre-registered, fabrication-averse protocol that
-reports its own negatives---not new theory in any single field.
+assumed-not-earned.} We close with a live application that is a \emph{metrology}
+result, not a saturation verdict: ``capability saturation'' is undefined without a
+cross-vendor capability metric, and none exists. On the one axis we do measure
+(everyday-text Arena preference) adjacent frontier models tie (top-10 within
+14~Elo, $\sim$51\% blind preference), but that axis is not capability: the same
+frontier spans $\sim$256~Elo on coding, and the multimodal, agentic, and
+vendor-specific axes---and even the ``everyday'' axis itself---are unmeasured. So
+both the pro- and the anti-saturation position are assumed-not-earned. The
+contribution is the cross-domain synthesis and a pre-registered, fabrication-averse
+protocol that reports its own negatives---not new theory in any single field.
 \end{abstract}
 
 \section{Introduction}
@@ -199,20 +198,24 @@ an added structure (\S\ref{sec:earned}), the value tracks the assumption--realit
 match and the failure is the same: a structure or bound believed but not present.
 The law even reaches the detector (the false-positive corollary above).
 
-\section{Application: has LLM capability entered the overhead region?}\label{sec:llm}
-The overhead boundary with model generations as the accumulation axis and
-user-perceptible difference as the floor. The one exact ingredient is LMArena's
-blind win-rate map \citep{chiang2024},
+\section{Application: the capability-measurement problem}\label{sec:llm}
+This section is not a verdict on whether LLMs have saturated. It is the sharper,
+\emph{metrology} claim: ``capability saturation'' is undefined without a
+cross-vendor capability metric, and none exists, so both the pro- and the
+anti-saturation position are assumed-not-earned. As in physics, an unmeasurable
+quantity is an undefined one. Applying the overhead boundary to model generations
+(floor $=$ user-perceptible difference) is the lens that surfaces this: the verdict
+is clean only on the one axis we instrument, and that axis is not capability. The
+one exact ingredient is LMArena's blind win-rate map \citep{chiang2024},
 $P(\mathrm{win})=1/(1+10^{-\Delta\elo/400})$ ($100~\elo\to0.640$); the floor is
 pre-registered (``barely perceptible'' at $P=0.55$, i.e.\ $\Delta\elo\ge35$).
 
-\paragraph{Aggregate text: inside the overhead region.} The real Arena
-overall/text top-10 (June 2026) spans $14~\elo$ (1510 down to 1496), so the
-largest adjacent gap is $\sim$7~\elo, a $\sim$51\% blind preference---below the
-$35~\elo$ floor. The marginal gain per generation has crossed the floor:
-GPT-3.5$\to$GPT-4 was $\sim$100~\elo (earned); 2025--26 adjacent gaps are
-4--14~\elo. On the median everyday prompt, recent frontier improvement buys
-capability with $\sim$0 perceptible marginal difference \citep{kaplan2020,hoffmann2022}.
+\paragraph{The one axis we measure --- everyday-text preference --- has gone flat.}
+That axis is not capability. The real Arena overall/text top-10 (June 2026) spans
+$14~\elo$ (1510 down to 1496), so the largest adjacent gap is $\sim$7~\elo, a
+$\sim$51\% blind preference---below the $35~\elo$ floor. The marginal gain per
+generation on this axis has crossed the floor: GPT-3.5$\to$GPT-4 was $\sim$100~\elo
+(earned); 2025--26 adjacent gaps are 4--14~\elo \citep{kaplan2020,hoffmann2022}.
 
 \paragraph{But ``hard'' is not a metric; capability is a vector.} The overhead
 verdict is a \emph{projection} onto an axis, and the axes are measured very
@@ -273,7 +276,8 @@ is Landauer's principle \citep{landauer1961}. The selective-inference hazard in
 permutation calibration. The LLM section builds on Chatbot Arena \citep{chiang2024}
 and the scaling-law literature \citep{kaplan2020,hoffmann2022}. We claim novelty
 only in the cross-domain synthesis, the falsification-averse protocol, and the
-projection-dependent framing of LLM saturation---not in any single tool.
+reframing of the scaling debate as a capability-measurement (metrology) problem
+---not in any single tool.
 
 \section{Limitations}
 The cosmology, RH, control, and sequential domains are toy or compressed instances,

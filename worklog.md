@@ -270,3 +270,17 @@ tokenization distorts Korean. Folded into docs/llm_overhead.md + paper §7.
 
 The repo is internally consistent end to end: paper, REPORT, docs, code, and CSVs
 all agree on the LLM numbers (14 / 7 / 256 Elo, 18x, 35-Elo floor).
+
+## 2026-06-23 (cont.) — reframe LLM section: metrology, not a saturation verdict
+
+Repositioned the LLM section per review: the contribution is a *capability-
+measurement (metrology) problem*, not a claim about whether LLMs have saturated.
+"Capability saturation" is undefined without a cross-vendor capability metric (none
+exists), so both the pro- and anti-saturation positions are assumed-not-earned —
+the physics stance that an unmeasurable quantity is undefined. The aggregate-Elo
+flatness is reframed as a statement about the one axis we measure (everyday-text
+preference), explicitly not capability. Synced REPORT §7.1 (heading/lead/(1)/close/
+related-work), paper/main.tex (abstract, §7 heading+lead, related-work), and
+docs/llm_overhead.md (title, anchor, conclusion). Analytically-correct critique uses
+of "saturation" (the thing being critiqued) kept; only headline/verdict framing
+removed.
