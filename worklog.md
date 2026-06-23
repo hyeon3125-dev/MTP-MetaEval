@@ -140,3 +140,29 @@ Nile's within-segment scatter).
   the law applies to the verification of the verification.
 
 Plot: `results/earned_threshold.png`. Folded into REPORT §6.1.
+
+## 2026-06-23 (cont.) — live application: LLM capability overhead
+
+Applied the overhead boundary to LLM progress (`adapters/llm_overhead.py`,
+`docs/llm_overhead.md`). Accumulation axis = model generations; floor =
+user-perceptible difference via LMArena's exact Elo->win-rate map
+P=1/(1+10^(-dElo/400)). Pre-registered floors: 55% win -> 35 Elo, 60% -> 70 Elo.
+
+Structural, non-fabricating: the verdict rests on the CITED clustering fact
+(LMArena June 2026: top tier within ~55 Elo, tightest on record; successive-leader
+low ~4 Elo in 2025-02) + the exact Elo math, not invented per-model scores.
+
+- Adjacent frontier models ~14 Elo -> ~52% blind preference -> below the 35-Elo
+  floor -> INSIDE the overhead region. Trend: GPT-3.5->GPT-4 ~100 Elo (earned) ->
+  2025-26 ~4-14 Elo (overhead). On the median everyday prompt, recent frontier
+  improvement buys capability with ~0 perceptible marginal difference.
+- NOT a ceiling: this is the §6.1 SNR law per task. Easy prompts = low
+  capability-SNR (imperceptible); hard distributions (math/agentic/long-context)
+  = high SNR, gaps still earned. Overhead is easy-task-only -> falsifiable
+  predictions in docs/llm_overhead.md.
+- Caveats: Elo != capability; aggregate != per-task; benchmark saturation is a
+  measurement ceiling.
+
+This is the framework's most load-bearing application and the strongest
+why-care-now hook for a preprint: the same overhead-boundary law dates the
+diminishing returns of LLM scaling and locates them on the easy-task axis.

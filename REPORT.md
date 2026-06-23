@@ -139,6 +139,33 @@ applies *to the detector*: deciding whether structure is earned is itself a
 verification that must be null-calibrated, or it manufactures structure from noise
 half the time.
 
+### 7.1 Live application — has LLM capability entered the overhead region? (`adapters/llm_overhead.py`)
+
+The same overhead boundary, with model *generations* as the accumulation axis.
+The only exact ingredient is LMArena's own Elo→blind-win-rate map,
+`P(win) = 1/(1+10^(−ΔElo/400))` (100 Elo → 0.640). Pre-registered perceptibility
+floors: a difference is "barely perceptible" at a 55% win-rate (ΔElo ≥ 35),
+"noticeable" at 60% (≥ 70).
+
+Real, *structural* anchor (cited, not invented per-model scores): as of June 2026
+the LMArena top tier is clustered within **~55 Elo — the tightest spread on
+record** (the successive-leader gap hit an all-time low of ~4 Elo in 2025-02).
+That puts adjacent frontier models ~14 Elo apart → **~52% blind preference**,
+*below* the 55% floor. The per-generation marginal gain has crossed the floor:
+GPT-3.5→GPT-4 was ~100 Elo (earned); 2025–26 adjacent gaps are ~4–14 Elo
+(overhead). **On the median everyday prompt, recent frontier improvement is in the
+overhead region — more capability bought, ~zero perceptible marginal difference.**
+
+This is *not* a universal capability ceiling — it is the §6.1 SNR law per task.
+Overall Elo averages over mostly-easy prompts (low capability-SNR → imperceptible);
+on hard distributions (frontier math, agentic coding, long-context, tool-use) the
+SNR is high and the gaps are still earned. "Overhead entered" is true for commodity
+use, false for frontier-hard use. Caveats (Elo ≠ capability; aggregate ≠ per-task;
+benchmark saturation is a measurement ceiling) are in `docs/llm_overhead.md`. This
+is the framework's most load-bearing application: the same assumed-not-earned /
+overhead-boundary law that judged a dark-energy model now dates the diminishing
+returns of LLM scaling — and locates them precisely on the easy-task axis.
+
 ## 8. What this is / is not
 
 - **Is:** a method for choosing where to stop verifying (or how much structure to
@@ -165,6 +192,7 @@ python adapters/robustness.py            # §3 robustness frontier
 python adapters/real_conjectures.py      # §4 historical validation
 python adapters/changepoint.py           # §6 earned vs assumed structure (real Nile)
 python adapters/earned_threshold.py      # §6.1 the SNR detection curve + threshold
+python adapters/llm_overhead.py          # §7.1 overhead region in LLM capability
 ```
 
 Navigation: [README](README.md) · [PREREGISTRATION](PREREGISTRATION.md) ·
