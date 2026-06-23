@@ -93,3 +93,33 @@ model, and fails when it must add believed structure or when its prior is wrong.
 
 Updated scorecard now runs 4 domains; meta-pattern reading in `run_scorecard.py`
 revised accordingly.
+
+## 2026-06-23 (cont.) — three strengthening tests + consolidated report
+
+The single un-flagged ground-truth result (sequential) used a synthetic
+population. Added three stronger tests and reframed the whole project's field.
+
+- **① Historical validation** (`adapters/real_conjectures.py`,
+  `docs/real_conjectures.md`): Pólya / Euler-n5 / Mertens / π(x)<li(x) vs
+  Collatz / Goldbach. An efficient floor would have endorsed all 4 famous
+  *disproven* conjectures; 2 (Mertens, Skewes) have counterexamples beyond all
+  computation — settled only by proof. The synthetic shift-failure is the
+  historical norm, and RH (no proven counterexample bound) is the same unbounded
+  gamble. Retro-flags the RH-domain win.
+- **② Robustness frontier** (`adapters/robustness.py`): the naive floor turns
+  unsafe at a true tail only 2× heavier (miss ~10× bound). A conservative floor
+  is safe up to heaviness s but compute-saved falls 94.5%→63% (s=1→8). Robustness
+  buys range, never invulnerability; unbounded tails admit no safe finite floor.
+- **③ Earned vs assumed structure** (`adapters/changepoint.py`): the same
+  add-localized-structure move that windowed-IDE LOST in cosmology is WON on the
+  real Nile series — changepoint at 1899 (Aswan dam), ΔAIC −53, permutation
+  p<0.001 — and NOT selected under a shuffled null. Cosmology's loss generalizes
+  conditionally: assumed structure loses, earned structure wins.
+
+**Unifying law (REPORT.md):** across all six un-flagged rows, MTP earns its keep
+exactly to the degree its assumption matches reality; the failure mode is always
+assumed-not-earned. **Field placement:** this is Computational Verification +
+Decision Theory (optimal stopping) + Reliability Engineering — "when to stop
+verifying" — not physics / pure math / control. Those are application instances.
+
+Consolidated write-up: `REPORT.md`.

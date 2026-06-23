@@ -1,0 +1,7 @@
+name,status,one_dim,ce_log10,floor_endorses_falsehood,outcome,note
+Polya L(n)<=0,FALSE,True,8.96,True,"floor MISSES: CE at 1e9.0, within feasible but far past the 'looks-settled' frontier (1e8)","counterexample n=906,150,257 (Tanaka 1980)"
+Mertens |M(n)|<sqrt(n),FALSE,True,,True,"floor MISSES: beyond all computation (location unproven, ~1e40 bound)",disproven 1985; no explicit CE; exists below e^(1.59e40)
+pi(x)<li(x),FALSE,True,316.1,True,floor MISSES: CE at 1e316 >> feasible 1e20,first sign change ~1.4e316 (Demichel 2005)
+Euler sum-of-powers (n=5),FALSE,False,10.79,True,"floor MISSES: CE at 1e10.8, within feasible but far past the 'looks-settled' frontier (1e0)",144^5 = 27^5+84^5+110^5+133^5 (Lander-Parkin 1966); multi-dim
+Collatz,OPEN_TRUE,True,,False,floor correct (no CE) -> compute saved,verified to 2^68 (Barina 2020); still open/true
+Goldbach (even),OPEN_TRUE,True,,False,floor correct (no CE) -> compute saved,verified to 4e18 (Oliveira e Silva 2014); still open/true
