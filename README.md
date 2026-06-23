@@ -1,5 +1,13 @@
 # MTP-MetaEval — explanatory-efficiency scorecard
 
+> **Start here:** [REPORT.md](REPORT.md) — the consolidated report (the spine).
+> Then: [PREREGISTRATION.md](PREREGISTRATION.md) (rules fixed before results) ·
+> [worklog.md](worklog.md) (chronology) · [docs/](docs/) (deep dives) ·
+> [results/](results/) (generated tables + plots).
+>
+> **One-line thesis:** *verification efficiency is purchased with assumptions; a
+> shortcut is worth exactly the degree its assumptions match reality.*
+
 Tests the **MTP axiom as a meta-modeling principle**, not as a cosmological
 model. The principle:
 
