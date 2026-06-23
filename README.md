@@ -60,14 +60,25 @@ hand-assigned scores.
 ## Run
 
 ```bash
-python run_scorecard.py                      # all three domains -> results/scorecard.csv
-python adapters/cosmology.py                 # one domain at a time
-python adapters/riemann.py
-python adapters/control.py
+# the 4-domain efficiency scorecard
+python run_scorecard.py                  # -> results/scorecard.csv
+
+# the un-flagged ground-truth evidence (the load-bearing parts)
+python adapters/sequential.py            # overhead-boundary risk bound + shift failure
+python adapters/robustness.py            # robustness frontier (breakdown + recovery)
+python adapters/real_conjectures.py      # historical validation (Polya/Mertens/Skewes)
+python adapters/changepoint.py           # earned-vs-assumed structure (real Nile)
+python adapters/earned_threshold.py      # the assumed/earned SNR detection curve
+
+# the LLM application (three nested "not-earned" levels)
+python adapters/llm_overhead.py          # overhead region + projection-dependence
+python adapters/info_content.py          # 'everyday' is an unmeasured info-content axis
+python adapters/register_case.py         # within-speaker: even the proxies are prior-calibrated
 ```
 
 Requires the sibling repos `MTP-Cosmology/` and `MTP-riemann-z explorer/` next to
-this one, plus their deps (numpy/scipy for cosmology; gcc for the C artifacts).
+this one, plus their deps (numpy/scipy/matplotlib for the Python domains; gcc for
+the C artifacts). The scorecard reuses the cosmology + RH/control artifacts.
 
 ## Layout
 
@@ -84,8 +95,18 @@ adapters/llm_overhead.py       live application: has LLM scaling entered overhea
 adapters/info_content.py       'everyday' is an unmeasured info-content axis (the confound)
 adapters/register_case.py      within-speaker case: even the proxies are prior-calibrated
 run_scorecard.py       cross-domain table + qualitative meta-pattern
-REPORT.md              consolidated verification-efficiency report
-results/               generated tables + plots
+REPORT.md              consolidated report   ·   paper/  arXiv-ready manuscript + PUBLISHING
+docs/                  overhead_boundary · real_conjectures · llm_overhead (deep dives)
+PREREGISTRATION.md · CITATION.cff (DOI 10.5281/zenodo.20806118)
+results/               generated artifacts:
+  scorecard.csv                       4-domain efficiency table
+  sequential_sweep.csv + .png         risk bound vs eps + overhead-boundary plot
+  robustness_breakdown.csv            breakdown / recovery frontier
+  real_conjectures.csv                historical floor-miss panel
+  changepoint.csv                     Nile regime shift (dAIC, perm p)
+  earned_threshold.csv + .png         SNR detection curve
+  llm_overhead.csv                    Elo gaps + per-axis regime
+  info_content.csv · register_case.csv   info-content axis + within-speaker case
 ```
 
 ## Result (see worklog for the run)

@@ -141,61 +141,83 @@ half the time.
 
 ### 7.1 Live application — has LLM capability entered the overhead region? (`adapters/llm_overhead.py`)
 
-The same overhead boundary, with model *generations* as the accumulation axis.
-The only exact ingredient is LMArena's own Elo→blind-win-rate map,
-`P(win) = 1/(1+10^(−ΔElo/400))` (100 Elo → 0.640). Pre-registered perceptibility
-floors: a difference is "barely perceptible" at a 55% win-rate (ΔElo ≥ 35),
-"noticeable" at 60% (≥ 70).
+The same overhead boundary, with model *generations* as the accumulation axis and
+*user-perceptible difference* as the floor. The one exact ingredient is LMArena's
+own Elo→blind-win-rate map, `P(win) = 1/(1+10^(−ΔElo/400))` (100 Elo → 0.640;
+identity, no data). Pre-registered perceptibility floors: "barely perceptible" at a
+55% win-rate (ΔElo ≥ 35), "noticeable" at 60% (≥ 70). Real per-model Elo are cited,
+not invented (openlm.ai / arena.ai overall leaderboard, June 2026).
 
-Real, *structural* anchor (cited, not invented per-model scores): as of June 2026
-the LMArena top tier is clustered within **~55 Elo — the tightest spread on
-record** (the successive-leader gap hit an all-time low of ~4 Elo in 2025-02).
-That puts adjacent frontier models ~14 Elo apart → **~52% blind preference**,
-*below* the 55% floor. The per-generation marginal gain has crossed the floor:
-GPT-3.5→GPT-4 was ~100 Elo (earned); 2025–26 adjacent gaps are ~4–14 Elo
-(overhead). **On the median everyday prompt, recent frontier improvement is in the
-overhead region — more capability bought, ~zero perceptible marginal difference.**
+**(1) Aggregate text — inside the overhead region.** The real overall/text top-10
+spans **14 Elo** (Fable 5 = 1510 down to Grok-4.20 = 1496), so the largest adjacent
+gap is **~7 Elo → ~51% blind preference** — well below the 35-Elo floor. The
+per-generation marginal gain has *crossed* the floor over time:
 
-This is *not* a universal capability ceiling — and "but it's still earned on
-*hard* tasks" is under-specified, which is the real finding. **Capability is a
-vector, not a scalar; the overhead verdict is a projection onto one axis, and the
-axes are measured wildly unequally.** Of seven capability axes, the verdict is
-*measurable* on three (all text: everyday preference → overhead; coding, math →
-re-ranked, so plausibly still earned) and *undetermined or unmeasurable* on four —
-agentic/tool-use, long-context fidelity, multimodal, and vendor-specific
-architecture — because **no cross-vendor quantitative benchmark exists** for them.
-Verifiable facts ground this: Arena category leaderboards re-rank models (overall
-#1 can be #5 in coding), the Arena leader tops no single automated benchmark, and
-benchmarks are fragmented (HLE, ARC-AGI-2, AIME, FrontierMath, SWE-bench, τ²-Bench)
-with no vendor-neutral basis, least of all for multimodal.
+| transition | ΔElo | blind win | regime |
+|---|---:|---:|---|
+| GPT-3.5 → GPT-4 (2023) | ~100 | 0.64 | earned |
+| GPT-4 → GPT-4o / Claude 3.5 (2024) | ~50 | 0.57 | earned |
+| 2025–26 adjacent frontier | ~4–14 | ~0.51 | **overhead** |
 
-So **"has scaling entered overhead?" is ill-posed without naming the projection.**
-It is confirmed on the everyday-text axis (low prompt-SNR — the §6.1 law),
-re-ranked on specialist text axes, and *unanswerable* on the multimodal / agentic /
-vendor-specific axes for lack of measurement. Asserting *global* overhead from
-aggregate Elo is itself **assumed-not-earned** — it assumes one easy-text
-projection captures the whole vector. The honest position is not "scaling is over"
-but "it is decidable only on the one axis we instrument; building vendor-neutral
-multimodal/agentic measurement is the prerequisite to deciding it anywhere else."
+On the median everyday prompt, recent frontier improvement is in the overhead
+region: capability is still bought, perceptible marginal difference ≈ 0.
 
-And even *that* one axis is mis-named. "Everyday text" was itself a colloquial
-proxy — the same assumed-not-earned trap. The real axis is information-theoretic:
-the **shared context** between sender and receiver, measurable by deictic density
+**(2) But the verdict is a projection — quantified.** "Still earned on *hard*
+tasks" is under-specified; that under-specification is the finding. **Capability is
+a vector, not a scalar**, and the verdict is a projection onto one axis. On the
+**coding** projection the *same* frontier spans **~256 Elo** (top tier 1310–1566) —
+**18× the overall spread** — so there the models are clearly distinguishable
+(earned). Of seven capability axes the overhead verdict is *measurable* on three
+(all text) and *undetermined / unmeasurable* on four:
+
+| capability axis | cross-vendor metric? | verdict |
+|---|---|---|
+| everyday text (aggregate Elo) | yes | overhead |
+| coding / math (text) | partial (SWE-bench, AIME) | re-ranked → earned on-axis |
+| agentic / tool-use | weak (τ²-Bench, bespoke) | undetermined |
+| long-context fidelity | weak | undetermined |
+| multimodal (vision/audio/video) | fragmented, not unified | unmeasurable |
+| vendor-specific architecture | none (incomparable) | ill-posed |
+
+Verifiable, cited: Arena category leaderboards *re-rank* models (overall #1 can be
+#5 in coding), the leader tops no single automated benchmark, and benchmarks are
+fragmented (HLE, ARC-AGI-2, AIME, FrontierMath, SWE-bench, τ²-Bench) with no
+vendor-neutral basis, least of all for multimodal. So **"has scaling entered
+overhead?" is ill-posed without naming the projection.** Asserting *global*
+overhead from aggregate Elo is itself **assumed-not-earned** — it assumes one
+easy-text projection captures the whole vector.
+
+**(3) Even "everyday" is unmeasured — the confound** (`adapters/info_content.py`).
+"Everyday text" was itself a colloquial proxy. The real axis is information-theoretic
+— the **shared context** between sender and receiver — measurable by deictic density
 (falls monotonically casual→formal), lexical diversity, and most faithfully LM
-perplexity (`adapters/info_content.py`). High-shared-context prompts have a narrow
-correct-answer space — *low capability-SNR by construction* — so competent models
-tie there regardless of saturation. The aggregate verdict therefore **conflates
-(a) capability saturation with (b) a prompt mix dominated by low-information
-tasks**, and Arena does not stratify by information content, so it cannot separate
-them. For the saturation question the benchmark is, in this respect, *broken* — an
-uncontrolled mixture. The earned claim needs stratified evaluation (do model gaps
-shrink across generations *within* high-information strata?); until then the
-defensible statement is only "adjacent models tie on the aggregate mixture," which
-is **not** "capability has saturated." Full treatment + falsifiable predictions:
-`docs/llm_overhead.md`. This is
-the framework's most load-bearing application — the same law that judged a
-dark-energy model now both dates the diminishing returns of LLM scaling *and* shows
-the claim is only well-posed on the sliver of capability we actually measure.
+perplexity. High-shared-context prompts have a *narrow correct-answer space — low
+capability-SNR by construction* — so competent models tie there regardless of
+saturation. The aggregate verdict thus **conflates (a) capability saturation with
+(b) a prompt mix dominated by low-information tasks**, and Arena does not stratify
+by information content, so it cannot separate them. For the saturation question the
+benchmark is, in this respect, *broken* — an uncontrolled mixture. The defensible
+claim is only "adjacent models tie on the aggregate mixture," **not** "capability
+has saturated"; the earned claim needs stratified evaluation (do gaps shrink across
+generations *within* high-information strata?).
+
+**(4) Third level — even the proxies are prior-calibrated** (`adapters/register_case.py`).
+A within-speaker case study (one author, casual vs technical text, derived metrics
+only) shows that for a high-baseline writer only the *surface-lexicon* proxies
+(slang, jargon density) separate casual from technical; every *register-complexity*
+proxy (lexical diversity, sentence length, compressibility) fails. The population
+prior "everyday speech = low complexity" is false here, so the instrument that
+measures whether structure is earned is *itself* prior-calibrated and can be
+assumed-not-earned — the same recursion as the §6.1 detector self-test.
+
+**Falsifiable predictions** (`docs/llm_overhead.md`): hard-category Elo gaps stay
+above the floor while overall stays below; any >35-Elo *overall* gap refutes the
+claim for that step; re-weighting Arena toward hard prompts widens adjacent gaps
+back above the floor. This is the framework's most load-bearing application: the
+same assumed-not-earned law that judged a dark-energy model dates the diminishing
+returns of LLM scaling *and* shows the claim is well-posed only on the sliver of
+capability we actually measure — at three nested levels (axis, info-content,
+proxy), each of which must itself be earned.
 
 ## 7.2 Scope: demonstrations vs contributions
 

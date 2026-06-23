@@ -251,3 +251,22 @@ the same recursion as the detector self-test (earned_threshold) and the prior-ma
 condition (sequential). The law applies to its own measuring tools at every level.
 Caveats: n=5 illustrative; gzip confounded by character-set entropy; whitespace
 tokenization distorts Korean. Folded into docs/llm_overhead.md + paper §7.
+
+## 2026-06-23 (cont.) — final documentation consolidation
+
+- REPORT §7.1 (LLM) fully rewritten with the REAL Arena data and a clear 4-part
+  evidence chain (was a single crammed paragraph mixing a stale ~55-Elo estimate
+  with the real 14-Elo figure): (1) aggregate text overhead — top-10 within 14 Elo
+  (1510..1496), max adjacent ~7 -> ~51% blind preference, with a marginal-gain
+  trend table; (2) projection-dependence QUANTIFIED — coding spread ~256 Elo (18x)
+  + the 7-axis measurability table; (3) the everyday info-content confound;
+  (4) the within-speaker third level. Sources cited inline.
+- Removed all stale "~55 Elo / top-5 cluster / ~52%" remnants from REPORT, docs,
+  and llm_overhead.py (docstring, HISTORICAL_GAPS, constants, CSV label); only the
+  append-only worklog keeps the older state as history.
+- README Run section now lists every analysis (scorecard + 8 adapters); Layout
+  gains a results/ artifact catalogue and DOI pointer.
+- Verified paper/main.tex §7 already carries the real data + the three levels.
+
+The repo is internally consistent end to end: paper, REPORT, docs, code, and CSVs
+all agree on the LLM numbers (14 / 7 / 256 Elo, 18x, 35-Elo floor).

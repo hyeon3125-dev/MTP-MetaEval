@@ -15,9 +15,11 @@ Arena Elo -> blind-win-rate map (LMArena's own definition):
 The perceptibility FLOOR is pre-registered, not tuned. Real-world input is the
 *structural* leaderboard fact, cited, not invented per-model scores:
 
-  LMArena / arena.ai, June 2026: the top tier is clustered within ~55 Elo — the
-  tightest spread on record; the all-time-low successive-leader gap was ~4 Elo
-  (2025-02). (https://openlm.ai/chatbot-arena/ , https://benchlm.ai/llm-leaderboard-history)
+  openlm.ai/chatbot-arena (overall/text, June 2026), real per-model Elo: the top-10
+  spans just 14 Elo (Claude Fable 5 1510 .. Grok-4.20 1496); the all-time-low
+  successive-leader gap was ~4 Elo (2025-02). The coding category top tier spans
+  ~256 Elo over the same models -> the verdict is per-axis.
+  (https://openlm.ai/chatbot-arena/ , https://benchlm.ai/llm-leaderboard-history)
 
 Heavy caveats are in main() and REPORT — Elo is aggregate blind preference over
 mostly-everyday prompts; "imperceptible" means on the median prompt, NOT that
@@ -47,11 +49,8 @@ HISTORICAL_GAPS = [
     ("2023-03  GPT-3.5 -> GPT-4", 100.0),     # GPT-4 launched ~100+ Elo above 3.5
     ("2024     GPT-4 -> GPT-4o/Claude3.5", 50.0),
     ("2025-02  successive-leader low", 4.0),  # cited all-time low
-    ("2026-06  top-5 cluster (per-gap)", 55.0 / 4),  # ~55 Elo across top 5 -> ~14/gap
+    ("2026-06  adjacent (top-10)", 7.0),      # real: max adjacent gap in the top-10
 ]
-
-TOP_TIER_SPREAD_2026 = 55.0    # cited: top tier within ~55 Elo (June 2026)
-TOP_TIER_N = 5
 
 # Real Arena overall/text top-10 (openlm.ai/chatbot-arena, June 2026), exact Elo.
 OVERALL_TOP10 = [
@@ -195,7 +194,7 @@ def main():
         for name, g in HISTORICAL_GAPS:
             w.writerow([name, f"{g:.1f}", f"{winrate(g):.3f}", f"{floor55:.1f}",
                         "earned" if g >= floor55 else "overhead"])
-        w.writerow(["2026-06 adjacent (top-5 cluster)", f"{per_gap:.1f}",
+        w.writerow(["2026-06 adjacent (top-10)", f"{per_gap:.1f}",
                     f"{winrate(per_gap):.3f}", f"{floor55:.1f}", "overhead"])
     print("\nWrote: results/llm_overhead.csv")
 

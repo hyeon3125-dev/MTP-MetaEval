@@ -27,15 +27,19 @@ A capability difference is perceptible only if blind preference clears a win-rat
 
 ## Real anchor and verdict
 
-LMArena / arena.ai, June 2026: the top tier is clustered within **~55 Elo, the
-tightest spread on record**; the successive-leader gap hit an all-time low of ~4
-Elo (2025-02). Sources: [openlm.ai/chatbot-arena](https://openlm.ai/chatbot-arena/),
+openlm.ai / arena.ai overall/text leaderboard, June 2026 (real per-model Elo): the
+**top-10 spans just 14 Elo** — Claude Fable 5 (1510) down to Grok-4.20 (1496) — so
+the largest adjacent gap is **~7 Elo**. Sources:
+[openlm.ai/chatbot-arena](https://openlm.ai/chatbot-arena/),
 [benchlm.ai history](https://benchlm.ai/llm-leaderboard-history).
 
-- Adjacent frontier models ≈ 14 Elo apart → **52% blind preference** → below the
+- Adjacent frontier models ~7 Elo apart → **~51% blind preference** → below the
   35-Elo (55%) floor → **inside the overhead region**.
 - Marginal gain per generation, over time: GPT-3.5→GPT-4 ≈ 100 Elo (earned) →
   2024 ≈ 50 (earned) → 2025–26 ≈ 4–14 (overhead). The trend has crossed the floor.
+- Projection contrast (same frontier): overall/text spread **14 Elo** vs **coding
+  top-tier spread ~256 Elo** (1310–1566) — **18× wider** — so the models that tie on
+  everyday text are clearly separated on coding. Overhead is per-axis (next section).
 
 **Conclusion (scoped):** on the distribution of everyday user prompts, recent
 frontier improvement is in the overhead region — capability is still being bought
