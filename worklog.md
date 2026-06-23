@@ -227,3 +227,27 @@ defensible claim is only "adjacent models tie on the aggregate mixture," not
 "capability has saturated."
 
 Updated REPORT §7.1, docs/llm_overhead.md, paper/main.tex (abstract, §7, limits).
+
+## 2026-06-23 (cont.) — within-speaker register case: a third level of the law
+
+A within-speaker self-experiment (one author, casual vs technical text from a
+single session) was contributed. Folded in using DERIVED METRICS ONLY -- the raw
+session text contains personal and IP-sensitive material (excluded; verified absent
+from the repo). `adapters/register_case.py`.
+
+Re-analysed per-proxy (the original hand-weighted composite + 0.35 threshold are
+dropped as post-hoc/assumed-not-earned): only the SURFACE-lexicon proxies (slang
+density, jargon density) separate casual from technical; every REGISTER-complexity
+proxy (lexical diversity, sentence length, compressibility) fails. For this speaker
+"everyday" is not lower cognitive register, only different surface vocabulary --
+the population prior "everyday = low complexity" is false here. Non-circular: samples
+were labelled by technical topic, so jargon separating topic is near-tautological;
+the informative result is that everything else fails.
+
+Third level of assumed-not-earned: "hard" undefined (capability vector), "everyday"
+undefined (info-content axis), and now the everyday PROXIES are themselves
+prior-calibrated. The instrument that measures "earned" must itself be earned --
+the same recursion as the detector self-test (earned_threshold) and the prior-match
+condition (sequential). The law applies to its own measuring tools at every level.
+Caveats: n=5 illustrative; gzip confounded by character-set entropy; whitespace
+tokenization distorts Korean. Folded into docs/llm_overhead.md + paper §7.

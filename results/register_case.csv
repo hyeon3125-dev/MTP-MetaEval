@@ -1,0 +1,6 @@
+proxy,kind,casual_mean,tech_mean,mean_gap,separates
+compression,register,0.7184999999999999,0.8136666666666666,0.09516666666666673,False
+colloquial%,surface,7.5,0.0,7.5,True
+tech_density,surface,0.0,0.28400000000000003,0.28400000000000003,True
+TTR,register,0.976,0.8993333333333333,0.07666666666666666,False
+sentence_len,register,20.25,27.900000000000002,7.650000000000002,False

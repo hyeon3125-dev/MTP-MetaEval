@@ -119,6 +119,42 @@ is narrow: *on the aggregate blind-preference mixture, adjacent frontier models
 are near-indistinguishable* — which is true, and is **not** the same as "capability
 has saturated."
 
+## A third level: the everyday proxies are themselves prior-calibrated (`adapters/register_case.py`)
+
+A within-speaker self-experiment (one author, casual vs technical messages from a
+single session; only derived metrics retained, raw text excluded for privacy/IP)
+sharpens the point. Re-analysed per-proxy (dropping the original hand-weighted
+composite, which is itself a post-hoc, assumed-not-earned choice):
+
+| proxy | kind | casual | technical | separates? |
+|-------|------|-------:|----------:|------------|
+| slang density | surface | 7.5% | 0% | **yes** |
+| jargon density | surface | 0.00 | 0.28 | **yes** |
+| compressibility | register | 0.72 | 0.81 | no (overlap) |
+| lexical diversity (TTR) | register | 0.98 | 0.90 | no (overlap) |
+| sentence length | register | 20.3 | 27.9 | no (overlap) |
+
+Only the **surface-lexicon** proxies separate casual from technical; every
+**register-complexity** proxy fails. So for this speaker "everyday" is not a lower
+cognitive register---only a different surface vocabulary. (The result is
+non-circular precisely because samples were labelled by technical *topic*, which
+makes "jargon separates topics" near-tautological; the informative fact is that
+everything else fails.)
+
+This is the **third level of assumed-not-earned** in the same measurement:
+"hard" was undefined (capability vector); "everyday" was undefined (info-content
+axis the benchmark does not stratify); and now the everyday *proxies themselves*
+are calibrated to a population prior ("everyday speech = low complexity") that does
+not hold for an atypical speaker. The instrument that measures whether structure is
+earned must itself be earned---the same recursion as the detector self-test
+(`earned_threshold.py`) and the prior-match condition (`sequential.py`). The law
+applies to its own measuring tools, at every level.
+
+Caveats: illustrative $n{=}5$, not statistics; gzip is confounded by character-set
+entropy (Greek/math symbols inflate it, so it tracks notation not information);
+whitespace tokenization distorts agglutinative Korean (a morpheme analyzer would
+sharpen TTR/deixis).
+
 ## Caveats (non-overclaim)
 
 - **Elo ≠ capability.** Arena measures aggregate blind *preference*, confounded by
