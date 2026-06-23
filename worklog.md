@@ -123,3 +123,20 @@ Decision Theory (optimal stopping) + Reliability Engineering — "when to stop
 verifying" — not physics / pure math / control. Those are application instances.
 
 Consolidated write-up: `REPORT.md`.
+
+## 2026-06-23 (cont.) — earned/assumed as one calibrated curve
+
+Idle-time research to harden the central law (not a new model). Unified the
+cosmology (assumed, lost) and Nile (earned, won) cases on a single axis — the SNR
+of the localized structure (`adapters/earned_threshold.py`, noise calibrated to
+Nile's within-segment scatter).
+
+- Null-calibrated detection power crosses 95% at SNR ≈ 0.9. Nile sits at SNR ≈ 2.0
+  (power ~1.0); cosmology's windowed signal was sub-percent vs data errors
+  (SNR ≪ 1, below threshold). Assumed-vs-earned is *position on this curve*.
+- Bonus, self-referential: naive AIC<0 selects the localized model ~48% of the
+  time from pure NOISE (the changepoint-location search overfits, unpenalized).
+  The detector itself is assumed-not-earned unless calibrated against the null —
+  the law applies to the verification of the verification.
+
+Plot: `results/earned_threshold.png`. Folded into REPORT §6.1.

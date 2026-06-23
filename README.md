@@ -73,6 +73,7 @@ adapters/{cosmology,riemann,control,sequential}.py   4 efficiency domains
 adapters/real_conjectures.py   historical validation (Pólya/Mertens/Skewes/...)
 adapters/robustness.py         robustness frontier (breakdown + recovery cost)
 adapters/changepoint.py        earned-vs-assumed structure (real Nile series)
+adapters/earned_threshold.py   the assumed/earned axis as one SNR curve + threshold
 run_scorecard.py       cross-domain table + qualitative meta-pattern
 REPORT.md              consolidated verification-efficiency report
 results/               generated tables + plots

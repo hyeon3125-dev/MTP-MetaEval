@@ -98,6 +98,23 @@ structure **is** real: a changepoint model selects index 28 (year 1899) with
 null. Identical move, opposite verdict — decided entirely by whether the structure
 exists.
 
+### 6.1 One curve, not two anecdotes (`adapters/earned_threshold.py`)
+
+Cosmology (assumed, lost) and Nile (earned, won) are the two ends of a single
+quantity — the **signal-to-noise ratio** of the localized structure. Sweeping SNR
+(noise calibrated to Nile's within-segment scatter) gives a detection-power curve
+with a threshold: null-calibrated power crosses 95% at **SNR ≈ 0.9**. Nile sits at
+SNR ≈ 2.0 (power ~1.0); cosmology's windowed signal was sub-percent versus the
+data errors, i.e. SNR ≪ 1, below threshold. *Assumed-vs-earned is position on this
+curve, not a binary.* (`results/earned_threshold.png`.)
+
+A self-referential bonus: the **detector must itself be earned**. Naive AIC<0
+selects the localized model **~48% of the time from pure noise** — the
+changepoint-location search overfits and AIC doesn't penalize it — so the
+detection method falls into the *same* assumed-not-earned trap, fixed only by
+calibrating against the null (the permutation test). The verification of "is this
+structure earned?" is itself a verification that can be assumed-not-earned.
+
 ## 7. The general law
 
 | test | MTP assumption | matches reality? | outcome |
@@ -117,7 +134,10 @@ Six rows, one law:
 Whether the MTP move is a *stopping floor* (sections 2–4) or an *added structure*
 (sections 5–6), the value tracks the assumption-reality match, and the failure is
 always the same: a structure or bound believed but not present. The risk knob and
-the AIC gain are both only as good as that match.
+the AIC gain are both only as good as that match — and §6.1 shows the law even
+applies *to the detector*: deciding whether structure is earned is itself a
+verification that must be null-calibrated, or it manufactures structure from noise
+half the time.
 
 ## 8. What this is / is not
 
@@ -144,6 +164,7 @@ python adapters/sequential.py            # §2-3 overhead boundary: bound + shif
 python adapters/robustness.py            # §3 robustness frontier
 python adapters/real_conjectures.py      # §4 historical validation
 python adapters/changepoint.py           # §6 earned vs assumed structure (real Nile)
+python adapters/earned_threshold.py      # §6.1 the SNR detection curve + threshold
 ```
 
 Navigation: [README](README.md) · [PREREGISTRATION](PREREGISTRATION.md) ·
